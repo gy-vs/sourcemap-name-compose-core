@@ -1,2 +1,14 @@
-export type Segment={generatedLine:number;generatedColumn:number;source:string;originalLine:number;originalColumn:number;name?:string};
-export class SegmentMap{#segments:Segment[]=[];add(segment:Segment){this.#segments.push(segment);this.#segments.sort((a,b)=>a.generatedLine-b.generatedLine||a.generatedColumn-b.generatedColumn)}lookup(line:number,column:number){return this.#segments.filter(item=>item.generatedLine===line&&item.generatedColumn<=column).at(-1)??null}sources(){return [...new Set(this.#segments.map(item=>item.source.split('/').at(-1)!))]}}
+export type {
+  ChainLink,
+  ComposedSegment,
+  DecodedSegment,
+  Diagnosis,
+  EncodedSourceMap,
+  NameCandidate,
+  Segment,
+} from './types.js';
+export { SegmentMap } from './segment-map.js';
+export { NameTable } from './names.js';
+export { ComposedMap, composeMaps } from './compose.js';
+export { decodeMap, encodeMap } from './codec.js';
+export type { EncodeOptions } from './codec.js';
